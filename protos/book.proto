@@ -15,6 +15,7 @@ message Books {
 message NoParam {}
 
 service BookService {
+  rpc GetBooks (NoParam) returns (Books);
   rpc CreateBook (Book) returns (Book);
   rpc BookDetail (Book) returns (Book);
 }

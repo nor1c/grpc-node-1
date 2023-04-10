@@ -3,17 +3,18 @@ import * as grpc from 'grpc'
 import * as protoLoader from '@grpc/proto-loader'
 
 import { ProtoGrpcType } from './protos/book'
+import { Book } from './protos/bookPackage/Book'
+import { Books } from './protos/bookPackage/Books'
 import { BookServiceHandlers } from './protos/bookPackage/BookService'
 
 class Server {
   private server: grpc.Server
   private hostPort: string
-  private books: []
+  private books: any[] = []
 
   constructor(host: string, port: number) {
     this.server = new grpc.Server()
     this.hostPort = `${host}:${port}`
-    this.books = []
   }
 
   async boot(): Promise<void> {
@@ -21,8 +22,9 @@ class Server {
     const bookProto = ((grpc.loadPackageDefinition(packageDefinition)) as unknown) as ProtoGrpcType
 
     const serverImpl: BookServiceHandlers = {
+      GetBooks: this.getBooks.bind(this),
       CreateBook: this.createBook.bind(this),
-      BookDetail: this.bookDetail.bind(this)
+      BookDetail: this.bookDetail.bind(this),
     }
 
     this.server.addService(bookProto.bookPackage.BookService.service, serverImpl)
@@ -40,8 +42,24 @@ class Server {
     )
   }
 
+  getBooks(call: any, callback: any) {
+    const rpcBooks: Books = {}
+
+    rpcBooks.books = this.books
+
+    callback(null, rpcBooks)
+  }
+
   createBook(call: any, callback: any) {
-    console.log(call);
+    const newBook: Book = {
+      id: this.books.length+1,
+      title: call.request.title,
+      page: call.request.page
+    }
+
+    this.books.push(newBook)
+
+    callback(null, newBook)
   }
 
   bookDetail() {}

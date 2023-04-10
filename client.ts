@@ -12,12 +12,20 @@ const client = new bookPackage.BookService("0.0.0.0:40000", grpc.credentials.cre
 
 client.createBook({
   "id": -1,
-  "title": "The Stronger",
+  "title": "Harry Potter by J. K. Rowling",
   "page": 40,
 }, (err: Error | null, response: any) => {
   if (err) {
-    console.log(err);
     console.log(`Received error: ${err.message}`)
+  } else {
+    // console.log(`Received from server: ${JSON.stringify(response)}`);
+    console.log(response)
+  }
+})
+
+client.getBooks({}, (err: Error | null, response: any) => {
+  if (err) {
+    console.log(`Received error: ${err.message}`);
   } else {
     console.log(`Received from server: ${JSON.stringify(response)}`);
   }
