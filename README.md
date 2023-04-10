@@ -11,3 +11,13 @@
 - https://stackoverflow.com/questions/64530776/how-do-you-generate-typings-for-protobuf-files-for-use-with-grpc
 - https://gist.github.com/shankarshastri/c1b4d920188da78a0dbc9fc707e82996
 - https://unpkg.com/browse/google-protobuf@3.17.3/README.md
+
+### Test the code
+- Run the gRPC server
+```bash
+yarn dev
+```
+- Create a new book via client
+```bash
+npx ts-node client.ts HarryPotter 999
+```
