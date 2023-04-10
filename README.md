@@ -1,6 +1,7 @@
 ### Generate types
+- Based on https://github.com/grpc/grpc-node/tree/master/packages/proto-loader#example-usage:
 ```bash
-/node_modules/.bin/proto-loader-gen-types --longs=String --enums=String --defaults --oneofs --grpcLib=@grpc/grpc-js --outDir=protos/ protos/*.proto
+./node_modules/.bin/proto-loader-gen-types --longs=String --enums=String --defaults --oneofs --grpcLib=@grpc/grpc-js --outDir=protos/ protos/*.proto
 ```
 
 ### Useful Links

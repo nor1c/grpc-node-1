@@ -43,11 +43,9 @@ class Server {
   }
 
   getBooks(call: any, callback: any) {
-    const rpcBooks: Books = {}
-
-    rpcBooks.books = this.books
-
-    callback(null, rpcBooks)
+    callback(null, {
+      'books': this.books
+    })
   }
 
   createBook(call: any, callback: any) {
