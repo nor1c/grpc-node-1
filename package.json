@@ -1,0 +1,19 @@
+{
+  "name": "grpc-node-1",
+  "version": "1.0.0",
+  "main": "server.ts",
+  "repository": "https://github.com/nor1c/grpc-node-1",
+  "author": "Ahmad Fauzi <ahmad.uji1902@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon server.ts"
+  },
+  "dependencies": {
+    "@grpc/proto-loader": "^0.7.6",
+    "grpc": "^1.24.11",
+    "typescript": "^5.0.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}

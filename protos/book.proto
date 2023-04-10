@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package bookPackage;
+
+message Book {
+  int32 id = 1;
+  string title = 2;
+  int32 page = 3;
+}
+
+message Books {
+  repeated Book books = 1;
+}
+
+message NoParam {}
+
+service BookService {
+  rpc CreateBook (Book) returns (Book);
+  rpc BookDetail (Book) returns (Book);
+}
